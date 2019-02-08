@@ -508,7 +508,7 @@ bool EventCategorizer::init() {
 
  //Expectation Value - Change in X position
 
-	for(double Y_Pos = -1.0; Y_Pos <= 1.0; Y_Pos += 0.1)	
+/*	for(double Y_Pos = -1.0; Y_Pos <= 1.0; Y_Pos += 0.1)	
 	{	
 
     getStatistics().createHistogram(new TH1F(Form("ExpecValue1_Y_Pos_%f",Y_Pos), Form("ExpecValue1_Y_Pos_%f", Y_Pos),
@@ -532,7 +532,7 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D(Form("ExpecValue_Y_Pos_%f", Y_Pos))->GetYaxis()->SetTitle("Counts");
 
 	}
-
+*/
 /*
 
 
@@ -848,28 +848,32 @@ bool EventCategorizer::exec() {
 
       //This analysis requires only 4-Hits in a single event	    
 
-      if (event.getHits().size() == 4) {
+      if (event.getHits().size() == 5) {
 
-	for(double Y_Pos = -1.0; Y_Pos <= 1.0; Y_Pos += 0.1){
+	//for(double Y_Pos = -1.0; Y_Pos <= 1.0; Y_Pos += 0.1){
 
 		
 	//Main Code:
 
-	TVector3 Center(0.0, Y_Pos, 0.0);
+	TVector3 Center(0.0, 0.0, 0.0);  //Center of the Geometry
 
-getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
+	getStatistics().getHisto1D("Hits")->Fill(event.getHits().size()); 
 
         JPetHit firstHit = event.getHits().at(0);
         JPetHit secondHit = event.getHits().at(1);
         JPetHit thirdHit = event.getHits().at(2);
         JPetHit fourthHit = event.getHits().at(3);
-
+	JPetHit fifthHit = event.getHits().at(4);
+	
+	//Z-Position of the Hits
         getStatistics().getHisto1D("Z_Pos_Before")->Fill(firstHit.getPosZ());
         getStatistics().getHisto1D("Z_Pos_Before")->Fill(secondHit.getPosZ());
         getStatistics().getHisto1D("Z_Pos_Before")->Fill(thirdHit.getPosZ());
         getStatistics().getHisto1D("Z_Pos_Before")->Fill(fourthHit.getPosZ());
+        getStatistics().getHisto1D("Z_Pos_Before")->Fill(fifthHit.getPosZ());
 
-        auto timeDifference_first = firstHit.getTimeDiff() / 1000.0;
+	//Time Difference B-A of the Hits
+	auto timeDifference_first = firstHit.getTimeDiff() / 1000.0;
         getStatistics().getHisto1D("TimeDiff_Resolution")->Fill(timeDifference_first);
         auto timeDifference_second = secondHit.getTimeDiff() / 1000.0;
         getStatistics().getHisto1D("TimeDiff_Resolution")->Fill(timeDifference_second);
@@ -877,10 +881,13 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
         getStatistics().getHisto1D("TimeDiff_Resolution")->Fill(timeDifference_third);
         auto timeDifference_fourth = fourthHit.getTimeDiff() / 1000.0;
         getStatistics().getHisto1D("TimeDiff_Resolution")->Fill(timeDifference_fourth);
+	auto timeDifference_fifth = fifthHit.getTimeDiff() / 1000.0;
+        getStatistics().getHisto1D("TimeDiff_Resolution")->Fill(timeDifference_fifth);
+
 
         //Z-Position is less than 23.0 cm
 
-        if (fabs(firstHit.getPosZ()) <= 23.0 && fabs(secondHit.getPosZ()) <= 23.0 && fabs(thirdHit.getPosZ()) <= 23.0 && fabs(fourthHit.getPosZ()) <= 23.0) {
+        if (fabs(firstHit.getPosZ()) <= 23.0 && fabs(secondHit.getPosZ()) <= 23.0 && fabs(thirdHit.getPosZ()) <= 23.0 && fabs(fourthHit.getPosZ()) <= 23.0 && fabs(fifthHit.getPosZ()) <= 23.0) {
 
           getStatistics().getHisto1D("Z_Pos_After")->Fill(firstHit.getPosZ());
           getStatistics().getHisto1D("Z_Pos_After")->Fill(secondHit.getPosZ());
@@ -888,18 +895,22 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
           getStatistics().getHisto1D("Z_Pos_After")->Fill(fourthHit.getPosZ());
           getStatistics().getHisto1D("Hits_Z_Pos")->Fill(event.getHits().size());
 
-          //Scintillator ID must be unique
+
+   	//Scintillator ID must be unique
 
           auto scinID_first = firstHit.getScintillator().getID();
           auto scinID_second = secondHit.getScintillator().getID();
           auto scinID_third = thirdHit.getScintillator().getID();
           auto scinID_fourth = fourthHit.getScintillator().getID();
+	  auto scinID_fifth = fifthHit.getScintillator().getID();
 
           std::vector < double > ScinID;
           ScinID.push_back(scinID_first);
           ScinID.push_back(scinID_second);
           ScinID.push_back(scinID_third);
           ScinID.push_back(scinID_fourth);
+	  ScinID.push_back(scinID_fifth);
+
 
           int k = 0;
           int limit = ScinID.size();
@@ -909,6 +920,7 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
                 k++;
             }
           }
+
           int m = k / 2;
 
           getStatistics().getHisto1D("ScinID_Replica")->Fill(m);
@@ -916,19 +928,37 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
           if (m == 0)
             getStatistics().getHisto1D("ScinID_Replica_Cut")->Fill(m);
 
-          if (scinID_first != scinID_second && scinID_first != scinID_third && scinID_first != scinID_fourth)
+          if (scinID_first != scinID_second && scinID_first != scinID_third && scinID_first != scinID_fourth && scinID_first != scinID_fifth)
 
           {
 
-            if (scinID_second != scinID_third && scinID_second != scinID_fourth)
+            if (scinID_second != scinID_third && scinID_second != scinID_fourth && scinID_second != scinID_fifth)
 
             {
 
-              if (scinID_third != scinID_fourth)
+              if (scinID_third != scinID_fourth && scinID_third != scinID_fifth)
 
               {
 
+		if(scinID_fourth != scinID_fifth)
+	
+		{
+
+
                 getStatistics().getHisto1D("Hits_ScinID")->Fill(event.getHits().size());
+
+
+
+                double TOT_1 = CalcTOT(firstHit);
+		double TOT_2 = CalcTOT(secondHit);
+		double TOT_3 = CalcTOT(thirdHit);
+		double TOT_4 = CalcTOT(fourthHit);
+		double TOT_5 = CalcTOT(fifthHit);
+
+
+
+       
+
 
                 //Ordering Hits and segregating Primary interactions and Scattered Interaction
 
@@ -1109,7 +1139,7 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
 
                     getStatistics().getHisto2D("Angle3D")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 			
-			double AngleDiff = (360 - (Angle12 + Angle23));
+		    double AngleDiff = (360 - (Angle12 + Angle23));
                     double Sum_All_TOT = pr1TOT + pr2TOT + pr3TOT + ScatHitTOT;
   		    getStatistics().getHisto1D("Sum_All_TOT_90_before")->Fill(Sum_All_TOT);
 
@@ -1275,7 +1305,7 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
 			
 	//Calculation of Expectation Value
 
-	
+	/*
 
 
 
@@ -1301,11 +1331,38 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
  	getStatistics().getHisto1D(Form("ExpecValue3_Y_Pos_%f", Y_Pos))->Fill(ExpecValue3);
  	getStatistics().getHisto1D(Form("ExpecValue_Y_Pos_%f", Y_Pos))->Fill(ExpecValue3);
 				
+
+
+			*/
+
+
+
+        if (Scat_Ordering_Vec.at(0).second.first.getScintillator().getID() == Energy_Vector.at(2).second.getScintillator().getID()) {
+
+                              double ExpecValue1 = CalExpecValue(Scat_Ordering_Vec.at(0).second.first, Scat_Ordering_Vec.at(0).second.second, Energy_Vector.at(1).second, Center);
+
+               getStatistics().getHisto1D("ExpecValue1")->Fill(ExpecValue1);
+            getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue1);
+
+                            } else if (Scat_Ordering_Vec.at(0).second.first.getScintillator().getID() == Energy_Vector.at(1).second.getScintillator().getID()) {
+
+                              double ExpecValue2 = CalExpecValue(Scat_Ordering_Vec.at(0).second.first, Scat_Ordering_Vec.at(0).second.second, Energy_Vector.at(2).second, Center);
+            
+	    getStatistics().getHisto1D("ExpecValue2")->Fill(ExpecValue2);
+            getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue2);
+                            
+			   } else if (Scat_Ordering_Vec.at(0).second.first.getScintillator().getID() == Energy_Vector.at(0).second.getScintillator().getID()) {
+
+                              double ExpecValue3 = CalExpecValue(Scat_Ordering_Vec.at(0).second.first, Scat_Ordering_Vec.at(0).second.second,Energy_Vector.at(2).second, Center);
+                             
+ 	getStatistics().getHisto1D("ExpecValue3")->Fill(ExpecValue3);
+ 	getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue3);
+
 					
 
 
 
-		               }
+		              // }
     				
 			     }
 
@@ -1337,7 +1394,7 @@ getStatistics().getHisto1D("Hits")->Fill(event.getHits().size());
 
       }
 
-  
+  }
 
 
 
