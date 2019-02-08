@@ -955,9 +955,28 @@ bool EventCategorizer::exec() {
 		double TOT_4 = CalcTOT(fourthHit);
 		double TOT_5 = CalcTOT(fifthHit);
 
+                vector <pair< double, JPetHit >> Deex_ID; //Identifying the deexcitation photon
+		 Deex_ID.push_back({TOT_1, firstHit});
+                 Deex_ID.push_back({TOT_2, secondHit});
+                 Deex_ID.push_back({TOT_3, thirdHit});
+		 Deex_ID.push_back({TOT_4, fourthHit});	
+		 Deex_ID.push_back({TOT_5, fifthHit});
+
+		std::sort(Deex_ID.begin(), Deex_ID.end(), comparison);
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
+      
 
 
                 //Ordering Hits and segregating Primary interactions and Scattered Interaction
