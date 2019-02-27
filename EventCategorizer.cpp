@@ -53,7 +53,7 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Z_Pos_After")->GetXaxis()->SetTitle("Z Pos After [cm]");
     getStatistics().getHisto1D("Z_Pos_After")->GetYaxis()->SetTitle("Counts");
 
-
+//added comment
 
     getStatistics().createHistogram(new TH1F("ScinID", "Scintillator ID Distribution",
       193, -0.5, 192.5));
