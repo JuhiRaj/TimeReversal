@@ -32,18 +32,41 @@ bool EventCategorizer::init() {
 
     //Control Spectra
 
-    getStatistics().createHistogram(new TH1F("Hits_All", "Event Multiplicity",
+    getStatistics().createHistogram(new TH1F("Hits_All", "Hit Multiplicity",
       11, -0.5, 10.5));
-    getStatistics().getHisto1D("Hits_All")->GetXaxis()->SetTitle("Event Multiplicity");
+    getStatistics().getHisto1D("Hits_All")->GetXaxis()->SetTitle("Hit Multiplicity");
     getStatistics().getHisto1D("Hits_All")->GetYaxis()->SetTitle("Counts");
 
-    getStatistics().createHistogram(new TH1F("Hits", "Event Multiplicity - 4 Hits",
+    getStatistics().createHistogram(new TH1F("Hits", "Hit Multiplicity - 4 Hits",
       11, -0.5, 10.5));
-    getStatistics().getHisto1D("Hits")->GetXaxis()->SetTitle("Event Multiplicity - 4 Hits");
+    getStatistics().getHisto1D("Hits")->GetXaxis()->SetTitle("Hit Multiplicity - 4 Hits");
     getStatistics().getHisto1D("Hits")->GetYaxis()->SetTitle("Counts");
 
+    getStatistics().createHistogram(new TH1F("Hits_Z_Pos", "Hit Multiplicity - Z Pos 23 cm",
+      11, -0.5, 10.5));
+    getStatistics().getHisto1D("Hits_Z_Pos")->GetXaxis()->SetTitle("Hit Multiplicity - Z Pos 23 cm");
+    getStatistics().getHisto1D("Hits_Z_Pos")->GetYaxis()->SetTitle("Counts");
 
-     getStatistics().createHistogram(new TH1F("Z_Pos_Before", "Z_Pos_Before",
+    getStatistics().createHistogram(new TH1F("Hits_Replica", "Hit Multiplicity - ID Replica",
+      11, -0.5, 10.5));
+    getStatistics().getHisto1D("Hits_Replica")->GetXaxis()->SetTitle("Hit Multiplicity - ID Replica");
+    getStatistics().getHisto1D("Hits_Replica")->GetYaxis()->SetTitle("Counts");
+
+   getStatistics().createHistogram(new TH1F("Hits_New_Event", "Hit Multiplicity - New_Event",
+      11, -0.5, 10.5));
+    getStatistics().getHisto1D("Hits_New_Event")->GetXaxis()->SetTitle("Hit Multiplicity - New_Event");
+    getStatistics().getHisto1D("Hits_New_Event")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("Hits_New_Event_4", "Hit Multiplicity - New_Event - 4 or more",
+      11, -0.5, 10.5));
+    getStatistics().getHisto1D("Hits_New_Event_4")->GetXaxis()->SetTitle("Hit Multiplicity - New_Event - 4 or More");
+    getStatistics().getHisto1D("Hits_New_Event_4")->GetYaxis()->SetTitle("Counts");
+
+
+
+
+    getStatistics().createHistogram(new TH1F("Z_Pos_Before", "Z_Pos_Before",
       101, -50.5, 50.5));
     getStatistics().getHisto1D("Z_Pos_Before")->GetXaxis()->SetTitle("Z Pos Before [cm]");
     getStatistics().getHisto1D("Z_Pos_Before")->GetYaxis()->SetTitle("Counts");
@@ -53,7 +76,6 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Z_Pos_After")->GetXaxis()->SetTitle("Z Pos After [cm]");
     getStatistics().getHisto1D("Z_Pos_After")->GetYaxis()->SetTitle("Counts");
 
-//added comment
 
     getStatistics().createHistogram(new TH1F("ScinID", "Scintillator ID Distribution",
       193, -0.5, 192.5));
@@ -77,12 +99,50 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Sum_All_TOT")->GetXaxis()->SetTitle("Sum_All_TOT [ns]");
     getStatistics().getHisto1D("Sum_All_TOT")->GetYaxis()->SetTitle("Counts");
 
-    getStatistics().createHistogram(new TH1F("Sum_All_TOT_100", "Sum_All_TOT_100",
+    getStatistics().createHistogram(new TH1F("Sum_All_TOT_30", "Sum_All_TOT_30",
       401, -0.5, 400.5));
-    getStatistics().getHisto1D("Sum_All_TOT_100")->GetXaxis()->SetTitle("Sum_All_TOT_100 [ns]");
-    getStatistics().getHisto1D("Sum_All_TOT_100")->GetYaxis()->SetTitle("Counts");
+    getStatistics().getHisto1D("Sum_All_TOT_30")->GetXaxis()->SetTitle("Sum_All_TOT_30 [ns]");
+    getStatistics().getHisto1D("Sum_All_TOT_30")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("TOT_Check", "TOT_Check",
+      401, -0.5, 400.5));
+    getStatistics().getHisto1D("TOT_Check")->GetXaxis()->SetTitle("TOT_Check [ns]");
+    getStatistics().getHisto1D("TOT_Check")->GetYaxis()->SetTitle("Counts");
 
 
+    getStatistics().createHistogram(new TH1F("TOF_Difference_t3t1", "TOF_Difference_t3t1",
+      2010, -100.5, 100.5));
+    getStatistics().getHisto1D("TOF_Difference_t3t1")->GetXaxis()->SetTitle("TOF_Difference_t3t1 [ns]");
+    getStatistics().getHisto1D("TOF_Difference_t3t1")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("TOF_Difference_t3t1_2ns", "TOF_Difference_t3t1_2ns",
+      2010, -100.5, 100.5));
+    getStatistics().getHisto1D("TOF_Difference_t3t1_2ns")->GetXaxis()->SetTitle("TOF_Difference_t3t1_2ns [ns]");
+    getStatistics().getHisto1D("TOF_Difference_t3t1_2ns")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("DistancefromSurface", "DistancefromSurface",
+      510, -0.5, 50.5));
+    getStatistics().getHisto1D("DistancefromSurface")->GetXaxis()->SetTitle("DistancefromSurface [cm]");
+    getStatistics().getHisto1D("DistancefromSurface")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("DistancefromSurface_less3", "DistancefromSurface_less3",
+      510, -0.5, 50.5));
+    getStatistics().getHisto1D("DistancefromSurface_less3")->GetXaxis()->SetTitle("DistancefromSurface_less3 [cm]");
+    getStatistics().getHisto1D("DistancefromSurface_less3")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH2F("Angle3D", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().getHisto2D("Angle3D")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
+    getStatistics().getHisto2D("Angle3D")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
+
+
+    getStatistics().createHistogram(new TH2F("Angle3D_190", "3D Azimuthal Angles (Greater than 190deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().getHisto2D("Angle3D_190")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
+    getStatistics().getHisto2D("Angle3D_190")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
+
+ 
     getStatistics().createHistogram(new TH1F("Delta_ij_all", "Delta_ij_all",
       40100, -200.5, 200.5));
     getStatistics().getHisto1D("Delta_ij_all")->GetXaxis()->SetTitle("Delta_ij_all [ns]");
@@ -92,6 +152,43 @@ bool EventCategorizer::init() {
       40100, -200.5, 200.5));
     getStatistics().getHisto1D("Delta_ij_least")->GetXaxis()->SetTitle("Delta_ij_least [ns]");
     getStatistics().getHisto1D("Delta_ij_least")->GetYaxis()->SetTitle("Counts");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+   
 
     getStatistics().createHistogram(new TH1F("DistancefromSurface_3", "DistancefromSurface_3",
       510, -0.5, 50.5));
@@ -148,37 +245,6 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("TOT_After")->GetXaxis()->SetTitle("TOT_After [ns]");
     getStatistics().getHisto1D("TOT_After")->GetYaxis()->SetTitle("Counts");
 
- getStatistics().createHistogram(new TH1F("TOF_Difference_t3t1", "TOF_Difference_t3t1",
-      2010, -100.5, 100.5));
-    getStatistics().getHisto1D("TOF_Difference_t3t1")->GetXaxis()->SetTitle("TOF_Difference_t3t1 [ns]");
-    getStatistics().getHisto1D("TOF_Difference_t3t1")->GetYaxis()->SetTitle("Counts");
-
-
- getStatistics().createHistogram(new TH1F("TOF_Difference_t3t1_2ns", "TOF_Difference_t3t1_2ns",
-      2010, -100.5, 100.5));
-    getStatistics().getHisto1D("TOF_Difference_t3t1_2ns")->GetXaxis()->SetTitle("TOF_Difference_t3t1_2ns [ns]");
-    getStatistics().getHisto1D("TOF_Difference_t3t1_2ns")->GetYaxis()->SetTitle("Counts");
-
-
-    getStatistics().createHistogram(new TH1F("DistancefromSurface", "DistancefromSurface",
-      510, -0.5, 50.5));
-    getStatistics().getHisto1D("DistancefromSurface")->GetXaxis()->SetTitle("DistancefromSurface [cm]");
-    getStatistics().getHisto1D("DistancefromSurface")->GetYaxis()->SetTitle("Counts");
-
-    getStatistics().createHistogram(new TH1F("DistancefromSurface_less3", "DistancefromSurface_less3",
-      510, -0.5, 50.5));
-    getStatistics().getHisto1D("DistancefromSurface_less3")->GetXaxis()->SetTitle("DistancefromSurface_less3 [cm]");
-    getStatistics().getHisto1D("DistancefromSurface_less3")->GetYaxis()->SetTitle("Counts");
-
-
- getStatistics().createHistogram(new TH2F("Angle3D", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
-    getStatistics().getHisto2D("Angle3D")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
-
-
-   getStatistics().createHistogram(new TH2F("Angle3D_190", "3D Azimuthal Angles (Greater than 190deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D_190")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D_190")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
 
 
    getStatistics().createHistogram(new TH2F("Dalitz_Energy_12", "Dalitz_Energy_12", 1041, -0.5, 1040.5, 1041, -0.5, 1040.5));
@@ -275,19 +341,11 @@ bool EventCategorizer::exec() {
 
 
 
-      if (event.getHits().size() == 4) {
 
-
-	getStatistics().getHisto1D("Hits")->Fill(event.getHits().size()); 
-	
     //Create a general vector of hits
 
 	vector<JPetHit> hits = event.getHits();
-
-
-
-
-
+	std::vector<JPetHit> New_Event;
 
     //Create vectors for different types of hits
 	
@@ -324,11 +382,33 @@ bool EventCategorizer::exec() {
 
 	}	
 
+
+
+
+
+
+
+
 	
 	//Only if all hits have Z-Pos less than 23 [cm] enter
 
-	if(ZPos_vec.size() == 4)
+	if(ZPos_vec.size() == event.getHits().size())
 	{
+
+
+
+	getStatistics().getHisto1D("Hits_Z_Pos")->Fill(event.getHits().size()); 
+	
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -361,29 +441,252 @@ bool EventCategorizer::exec() {
 
 
 
+
+
+
+
+
+
+
+
 	//No duplicate ID's only then enter 
 
 
-	if(ID_vec.size() == 4)
+	if(ID_vec.size() == event.getHits().size())
 	{
 
         getStatistics().getHisto1D("ScinID_Replica_Cut")->Fill(ID_vec.size());
 
+	getStatistics().getHisto1D("Hits_Replica")->Fill(event.getHits().size()); 
 
 
 
-	//Check for the TOT Sum
 
-	double TOT_0 = CalcTOT(hits[0]);
-	double TOT_1 = CalcTOT(hits[1]);
-	double TOT_2 = CalcTOT(hits[2]);
-	double TOT_3 = CalcTOT(hits[3]);
+
+
+
+
+
+
+	//Check all TOT 
+
+
+
+	for (auto i = hits.begin(); i != hits.end(); ++i) 
+	{
+		auto& hit1 = *i;
+
+
+	double TOT_i = CalcTOT(hit1);
 							
+	getStatistics().getHisto1D("Sum_All_TOT")->Fill(TOT_i);
 
 
-	double TOT_sum = TOT_0 + TOT_1 + TOT_2 + TOT_3 ;
 
-	getStatistics().getHisto1D("Sum_All_TOT")->Fill(TOT_sum);
+	if(TOT_i <= 30.0)
+
+		{
+
+
+	New_Event.push_back(hit1);
+	getStatistics().getHisto1D("Sum_All_TOT_30")->Fill(TOT_i);
+
+
+		}
+
+	}
+
+
+
+
+
+
+	
+	getStatistics().getHisto1D("Hits_New_Event")->Fill(New_Event.size()); 
+
+
+
+
+
+
+
+	if(New_Event.size() >= 4)
+
+
+	{
+
+
+	getStatistics().getHisto1D("Hits_New_Event_4")->Fill(New_Event.size()); 
+
+	
+
+	for (auto l = New_Event.begin(); l != New_Event.end(); ++l) 
+	{
+		
+
+	auto& hitl = *l;
+
+	double TOT_l = CalcTOT(hitl);
+							
+	getStatistics().getHisto1D("TOT_Check")->Fill(TOT_l);
+
+
+	}
+
+
+
+	//TOF correct all hits
+
+	vector <pair< double, JPetHit >> TOF_vec;
+
+	for (auto m = New_Event.begin(); m != New_Event.end(); ++m) 
+	{
+		
+	auto& hitm = *m;
+
+	double TOF_x = CalcTOF(hitm, Center);
+
+	TOF_vec.push_back({TOF_x, hitm});						
+
+	}
+
+
+
+	//Order the hits based on TOF time
+
+	std::sort(TOF_vec.begin(), TOF_vec.end(), comparison);
+
+	
+	//Segregate to possible primary and secondary 
+
+	PrimaryHits.push_back(TOF_vec.at(0).second);
+	PrimaryHits.push_back(TOF_vec.at(1).second);
+	PrimaryHits.push_back(TOF_vec.at(2).second);
+
+	for(uint h = 3; h < TOF_vec.size(); h++)	
+	{	
+
+	SecondaryHits.push_back(TOF_vec.at(h).second);	
+
+
+		}
+
+
+
+
+	getStatistics().getHisto1D("TOF_Difference_t3t1")->Fill(TOF_vec.at(2).first - TOF_vec.at(0).first);
+
+
+
+	//Cut on the Emission Time Difference  - TOF Corrected Times
+	
+	if((TOF_vec.at(2).first - TOF_vec.at(0).first) <= 2.0)
+
+
+	{
+
+
+        getStatistics().getHisto1D("TOF_Difference_t3t1_2ns")->Fill(TOF_vec.at(2).first - TOF_vec.at(0).first);
+	
+
+
+	//Distance of the Annihilation plane from the center of the geometry
+
+	double DistfromSurface = CalDistofSurface(PrimaryHits[0], PrimaryHits[1], PrimaryHits[2], Center);
+		
+	getStatistics().getHisto1D("DistancefromSurface")->Fill(DistfromSurface);
+
+
+
+	if(DistfromSurface <= 3.0)		
+	{
+	
+	getStatistics().getHisto1D("DistancefromSurface_less3")->Fill(DistfromSurface);
+
+
+
+	//Calculate the Angle 3D 
+
+
+	  vector < pair < double, pair < JPetHit, JPetHit >>> Angle3D;
+                    double Angle12 = Calc3DAngle(PrimaryHits[0], PrimaryHits[1], Center);
+                    double Angle23 = Calc3DAngle(PrimaryHits[1], PrimaryHits[2], Center);
+                    double Angle31 = Calc3DAngle(PrimaryHits[2], PrimaryHits[0], Center);
+                    Angle3D.push_back({Angle12,{PrimaryHits[0],PrimaryHits[1]}});
+                    Angle3D.push_back({Angle23,{PrimaryHits[1],PrimaryHits[2]}});
+                    Angle3D.push_back({Angle31,{PrimaryHits[2],PrimaryHits[0]}});
+
+                    std::sort(Angle3D.begin(), Angle3D.end(), comparison3);
+
+                    getStatistics().getHisto2D("Angle3D")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
+
+ 	//3D Angle Cut 	
+                          
+	if ((Angle3D.at(1).first + Angle3D.at(0).first) >= 190.0) {
+
+ 	getStatistics().getHisto2D("Angle3D_190")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+
+
+
+
+
+	//Map the Scatter Hits Possibility
+	
+	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec;
+
+	for (uint p = 0; p < PrimaryHits.size(); p++) 
+	{
+	
+
+		for (uint s = 0; s < SecondaryHits.size(); s++) 
+		{
+	
+
+			if(PrimaryHits[p].getTime()<SecondaryHits[s].getTime()) //Perform Scatter Check only if S_t > P_t
+
+			{
+	
+	
+
+		double Scatij = CalScatterTest(PrimaryHits[p], SecondaryHits[s]);
+		
+		getStatistics().getHisto1D("Delta_ij_all")->Fill(Scatij);
+
+		Scat_vec.push_back({Scatij, {PrimaryHits[p], SecondaryHits[s]}});	
+		
+	
+
+
+			}
+	
+        	}
+
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 
 
@@ -396,7 +699,11 @@ bool EventCategorizer::exec() {
 
 
 
-	//TOF correct all 4-hits
+
+
+
+
+	//TOF correct all hits
 	vector <pair< double, JPetHit >> TOF_vec;
 
 	double TOF_0 = CalcTOF(hits[0], Center);
@@ -597,6 +904,8 @@ bool EventCategorizer::exec() {
 
 
 
+
+
 	//Cut on ET 
 
 
@@ -721,10 +1030,10 @@ bool EventCategorizer::exec() {
 
 
 
+*/
 
-
-
-
+											}
+										
 
 										}
 
@@ -740,11 +1049,11 @@ bool EventCategorizer::exec() {
 
 				}
 
-			}
+			//}
 
-		}
+		//}
 
-	}
+//	}
 
 
 
