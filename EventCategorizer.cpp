@@ -384,9 +384,6 @@ bool EventCategorizer::exec() {
 
 
 
-
-
-
     //Check for the Z-pos  of all hits 
 	
         std::vector < int > ZPos_vec;
@@ -742,28 +739,22 @@ bool EventCategorizer::exec() {
 
 
 
-
-
-
-
 	//Map the Scatter Hits Possibility
 	
 	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_1;
 	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_2;
 	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_3;
-
 	std::vector < pair < double, pair < JPetHit, JPetHit >>> Final_Hits;
 
 
 	
 		//Primary Hit_1
 
-
 		for (uint s = 0; s < SecondaryHits.size(); s++) 
 		{
 	
 
-			if(PrimaryHits[0].getTime()<SecondaryHits[s].getTime())
+			if(PrimaryHits.at(0).getTime()<SecondaryHits.at(s).getTime())
 
 
  		//Perform Scatter Check only if S_t > P_t
@@ -772,13 +763,13 @@ bool EventCategorizer::exec() {
 	
 	
 
-		double Scatij_pr1 = CalScatterTest(PrimaryHits[0], SecondaryHits[s]);
+		double Scatij_pr1 = CalScatterTest(PrimaryHits.at(0), SecondaryHits.at(s));
 		
 		getStatistics().getHisto1D("Delta_ij_all_pr1")->Fill(Scatij_pr1);
 
 
 	
-		Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits[0], SecondaryHits[s]}});	
+		Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits.at(0), SecondaryHits.at(s)}});	
 		
 					
 					}
@@ -804,7 +795,7 @@ bool EventCategorizer::exec() {
 		Final_Hits.push_back({Scat_vec_1.at(0).first, {Scat_vec_1.at(0).second.first, Scat_vec_1.at(0).second.second}});	
 
 
-
+/*
 
 
 		//Primary Hit_2
@@ -941,7 +932,7 @@ bool EventCategorizer::exec() {
 
 
 
-	for(uint o = 0; o < 3; o++)
+	for(uint o = 0; o < Final_Hits.size(); o++)
 	{
 
 
@@ -979,7 +970,7 @@ bool EventCategorizer::exec() {
 
 
 
-
+			*/
 
 
 	
@@ -995,8 +986,20 @@ bool EventCategorizer::exec() {
 								}
 
 							}
-				
+
+
 						}
+
+
+
+	//Clear the vectors//
+
+
+
+	
+
+
+
 
 					}
 
