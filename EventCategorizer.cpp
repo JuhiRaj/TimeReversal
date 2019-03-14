@@ -755,7 +755,8 @@ bool EventCategorizer::exec() {
 	
 
 			if(PrimaryHits.at(0).getTime()<SecondaryHits.at(s).getTime())
-
+			
+			
 
  		//Perform Scatter Check only if S_t > P_t
 
@@ -768,11 +769,15 @@ bool EventCategorizer::exec() {
 		getStatistics().getHisto1D("Delta_ij_all_pr1")->Fill(Scatij_pr1);
 
 
+			
+
 	
 		Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits.at(0), SecondaryHits.at(s)}});	
 		
 					
 					}
+
+
 
 
 
@@ -785,17 +790,16 @@ bool EventCategorizer::exec() {
 
 
 
-
-		std::sort(Scat_vec_1.begin(), Scat_vec_1.end(), comparison3); //Sort Scatij
-
-		getStatistics().getHisto1D("Delta_ij_least_pr1")->Fill(Scat_vec_1.at(0).first);
-
-
-
+		if ( Scat_vec_1.size() >= 1 )
+		{
+			std::sort(Scat_vec_1.begin(), Scat_vec_1.end(), comparison3); //Sort Scatij
+			getStatistics().getHisto1D("Delta_ij_least_pr1")->Fill(Scat_vec_1.at(0).first);
+	
+	
 		Final_Hits.push_back({Scat_vec_1.at(0).first, {Scat_vec_1.at(0).second.first, Scat_vec_1.at(0).second.second}});	
 
+		}
 
-/*
 
 
 		//Primary Hit_2
@@ -834,7 +838,8 @@ bool EventCategorizer::exec() {
 		//Least Scatter Test Values of Pr2
 
 
-
+		if(Scat_vec_2.size() >= 1)
+		{	
 
 		std::sort(Scat_vec_2.begin(), Scat_vec_2.end(), comparison3); //Sort Scatij
 
@@ -845,7 +850,7 @@ bool EventCategorizer::exec() {
 		Final_Hits.push_back({Scat_vec_2.at(0).first, {Scat_vec_2.at(0).second.first, Scat_vec_2.at(0).second.second}});
 
 
-
+		}
 		
 		//Primary Hit_3
 
@@ -883,7 +888,8 @@ bool EventCategorizer::exec() {
 		//Least Scatter Test Values of Pr3
 
 
-
+		if(Scat_vec_3.size() >= 1)
+		{	
 
 		std::sort(Scat_vec_3.begin(), Scat_vec_3.end(), comparison3); //Sort Scatij
 
@@ -894,7 +900,7 @@ bool EventCategorizer::exec() {
 		Final_Hits.push_back({Scat_vec_3.at(0).first, {Scat_vec_3.at(0).second.first, Scat_vec_3.at(0).second.second}});
 
 
-
+		}
 
 
 		
@@ -914,10 +920,6 @@ bool EventCategorizer::exec() {
 	            getStatistics().getHisto2D("Dalitz_Energy_12")->Fill(Energy1, Energy2);
                     getStatistics().getHisto2D("Dalitz_Energy_23")->Fill(Energy2, Energy3);
                     getStatistics().getHisto2D("Dalitz_Energy_31")->Fill(Energy3, Energy1);
-
-
-
-
 
 
 
@@ -970,7 +972,7 @@ bool EventCategorizer::exec() {
 
 
 
-			*/
+			
 
 
 	
