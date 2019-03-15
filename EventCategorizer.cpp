@@ -34,6 +34,9 @@ bool EventCategorizer::init() {
 
     //Control Spectra
 
+
+	//Hits Multiplicity
+
     getStatistics().createHistogram(new TH1F("Hits_All", "Hit Multiplicity",
       11, -0.5, 10.5));
     getStatistics().getHisto1D("Hits_All")->GetXaxis()->SetTitle("Hit Multiplicity");
@@ -66,7 +69,7 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Hits_New_Event_4")->GetYaxis()->SetTitle("Counts");
 
 
-
+	//Z -Pos
 
     getStatistics().createHistogram(new TH1F("Z_Pos_Before", "Z_Pos_Before",
       101, -50.5, 50.5));
@@ -79,12 +82,19 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Z_Pos_After")->GetYaxis()->SetTitle("Counts");
 
 
+
+	//Scin_ID
+
     getStatistics().createHistogram(new TH1F("ScinID", "Scintillator ID Distribution",
       193, -0.5, 192.5));
     getStatistics().getHisto1D("ScinID")->GetXaxis()->SetTitle("Scintillator ID");
     getStatistics().getHisto1D("ScinID")->GetYaxis()->SetTitle("Counts");
 
  
+
+
+	//Replica Test
+
     getStatistics().createHistogram(new TH1F("ScinID_Replica", "ScinID_Replica",
       11, -0.5, 10.5));
     getStatistics().getHisto1D("ScinID_Replica")->GetXaxis()->SetTitle("ScinID_Replica");
@@ -95,6 +105,8 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("ScinID_Replica_Cut")->GetXaxis()->SetTitle("ScinID_Replica_Cut");
     getStatistics().getHisto1D("ScinID_Replica_Cut")->GetYaxis()->SetTitle("Counts");
 
+
+	//TOT Spectra
 
     getStatistics().createHistogram(new TH1F("Sum_All_TOT", "Sum_All_TOT",
       401, -0.5, 400.5));
@@ -112,6 +124,8 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("TOT_Check")->GetYaxis()->SetTitle("Counts");
 
 
+	//Emission Times
+
     getStatistics().createHistogram(new TH1F("TOF_Difference_t3t1", "TOF_Difference_t3t1",
       2010, -100.5, 100.5));
     getStatistics().getHisto1D("TOF_Difference_t3t1")->GetXaxis()->SetTitle("TOF_Difference_t3t1 [ns]");
@@ -124,6 +138,8 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("TOF_Difference_t3t1_2ns")->GetYaxis()->SetTitle("Counts");
 
 
+	//Distance from Center
+
     getStatistics().createHistogram(new TH1F("DistancefromSurface", "DistancefromSurface",
       510, -0.5, 50.5));
     getStatistics().getHisto1D("DistancefromSurface")->GetXaxis()->SetTitle("DistancefromSurface [cm]");
@@ -135,149 +151,98 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("DistancefromSurface_less3")->GetYaxis()->SetTitle("Counts");
 
 
+
+	//Angle 3D - Spectra 
+
     getStatistics().createHistogram(new TH2F("Angle3D", "3D Azimuthal Angles (Sum and Difference of the two smallest)", 251, -0.5, 250.5, 251, -0.5, 250.5));
     getStatistics().getHisto2D("Angle3D")->GetXaxis()->SetTitle("#Theta_1 + #Theta_0");
     getStatistics().getHisto2D("Angle3D")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
 
 
-    getStatistics().createHistogram(new TH2F("Angle3D_190", "3D Azimuthal Angles (Greater than 190deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D_190")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D_190")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
-
-
-    getStatistics().createHistogram(new TH2F("Angle3D_200", "3D Azimuthal Angles (Greater than 200deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D_200")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D_200")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
-
-   
-    getStatistics().createHistogram(new TH2F("Angle3D_Slope", "3D Azimuthal Angles (Slope from 190 deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D_Slope")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D_Slope")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
+    getStatistics().createHistogram(new TH2F("Angle3D", "3D Azimuthal Angles (Greater than 190deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().getHisto2D("Angle3D")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
+    getStatistics().getHisto2D("Angle3D")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
 
 
     getStatistics().createHistogram(new TH2F("Angle3D_Both", "3D Azimuthal Angles (Both - 200 Verticle & 100 Horizontal)", 251, -0.5, 250.5, 251, -0.5, 250.5));
     getStatistics().getHisto2D("Angle3D_Both")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
     getStatistics().getHisto2D("Angle3D_Both")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
 
-
-    getStatistics().createHistogram(new TH2F("Angle3D_ET_Cut", "3D Azimuthal Angles (Greater than 190deg & ET Cut)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D_ET_Cut")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D_ET_Cut")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
-
-
-    getStatistics().createHistogram(new TH2F("Angle3D_Dist_Cut", "3D Azimuthal Angles (Greater than 190deg & Dist Cut)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D_Dist_Cut")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D_Dist_Cut")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
-
-
  
-    getStatistics().createHistogram(new TH1F("Delta_ij_all_pr1", "Delta_ij_all_pr1",
-      40100, -200.5, 200.5));
-    getStatistics().getHisto1D("Delta_ij_all_pr1")->GetXaxis()->SetTitle("Delta_ij_all_pr1 [ns]");
-    getStatistics().getHisto1D("Delta_ij_all_pr1")->GetYaxis()->SetTitle("Counts");
-
-    getStatistics().createHistogram(new TH1F("Delta_ij_least_pr1", "Delta_ij_least_pr1",
-      40100, -200.5, 200.5));
-    getStatistics().getHisto1D("Delta_ij_least_pr1")->GetXaxis()->SetTitle("Delta_ij_least_pr1 [ns]");
-    getStatistics().getHisto1D("Delta_ij_least_pr1")->GetYaxis()->SetTitle("Counts");
+	//Dalitz - Angle
 
 
-
-    getStatistics().createHistogram(new TH1F("Delta_ij_all_pr2", "Delta_ij_all_pr2",
-      40100, -200.5, 200.5));
-    getStatistics().getHisto1D("Delta_ij_all_pr2")->GetXaxis()->SetTitle("Delta_ij_all_pr2 [ns]");
-    getStatistics().getHisto1D("Delta_ij_all_pr2")->GetYaxis()->SetTitle("Counts");
-
-    getStatistics().createHistogram(new TH1F("Delta_ij_least_pr2", "Delta_ij_least_pr2",
-      40100, -200.5, 200.5));
-    getStatistics().getHisto1D("Delta_ij_least_pr2")->GetXaxis()->SetTitle("Delta_ij_least_pr2 [ns]");
-    getStatistics().getHisto1D("Delta_ij_least_pr2")->GetYaxis()->SetTitle("Counts");
+	// 1.) Full
 
 
-
-
-    getStatistics().createHistogram(new TH1F("Delta_ij_all_pr3", "Delta_ij_all_pr3",
-      40100, -200.5, 200.5));
-    getStatistics().getHisto1D("Delta_ij_all_pr3")->GetXaxis()->SetTitle("Delta_ij_all_pr3 [ns]");
-    getStatistics().getHisto1D("Delta_ij_all_pr3")->GetYaxis()->SetTitle("Counts");
-
-    getStatistics().createHistogram(new TH1F("Delta_ij_least_pr3", "Delta_ij_least_pr3",
-      40100, -200.5, 200.5));
-    getStatistics().getHisto1D("Delta_ij_least_pr3")->GetXaxis()->SetTitle("Delta_ij_least_pr3 [ns]");
-    getStatistics().getHisto1D("Delta_ij_least_pr3")->GetYaxis()->SetTitle("Counts");
-
-
-
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_Full", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_Full", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
     getStatistics().getHisto2D("Dalitz_Angle_12_Full")->GetXaxis()->SetTitle("Angle12 [Degree]");
     getStatistics().getHisto2D("Dalitz_Angle_12_Full")->GetYaxis()->SetTitle("Angle23 [Degree]");
 
-   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_Full", "Dalitz Angle23 vs Angle31", 251, -0.5, 250.5, 251, -0.5, 250.5));
+   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_Full", "Dalitz Angle23 vs Angle31", 201, -0.5, 200.5, 201, -0.5, 200.5));
     getStatistics().getHisto2D("Dalitz_Angle_23_Full")->GetXaxis()->SetTitle("Angle23 [Degree]");
     getStatistics().getHisto2D("Dalitz_Angle_23_Full")->GetYaxis()->SetTitle("Angle31 [Degree]");
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_Full", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_Full", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
     getStatistics().getHisto2D("Dalitz_Angle_31_Full")->GetXaxis()->SetTitle("Angle31 [Degree]");
     getStatistics().getHisto2D("Dalitz_Angle_31_Full")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
 
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_Full_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->GetXaxis()->SetTitle("Angle31 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_190", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
+
+
+	// 2.) 190 Degree Cut
+
+
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_190", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
     getStatistics().getHisto2D("Dalitz_Angle_12_190")->GetXaxis()->SetTitle("Angle12 [Degree]");
     getStatistics().getHisto2D("Dalitz_Angle_12_190")->GetYaxis()->SetTitle("Angle23 [Degree]");
 
-   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_190", "Dalitz Angle23 vs Angle31", 251, -0.5, 250.5, 251, -0.5, 250.5));
+   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_190", "Dalitz Angle23 vs Angle31", 201, -0.5, 200.5, 201, -0.5, 200.5));
     getStatistics().getHisto2D("Dalitz_Angle_23_190")->GetXaxis()->SetTitle("Angle23 [Degree]");
     getStatistics().getHisto2D("Dalitz_Angle_23_190")->GetYaxis()->SetTitle("Angle31 [Degree]");
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_190", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_190", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
     getStatistics().getHisto2D("Dalitz_Angle_31_190")->GetXaxis()->SetTitle("Angle31 [Degree]");
     getStatistics().getHisto2D("Dalitz_Angle_31_190")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_200", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_12_200")->GetXaxis()->SetTitle("Angle12 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_12_200")->GetYaxis()->SetTitle("Angle23 [Degree]");
-
-   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_200", "Dalitz Angle23 vs Angle31", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_23_200")->GetXaxis()->SetTitle("Angle23 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_23_200")->GetYaxis()->SetTitle("Angle31 [Degree]");
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_200", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_31_200")->GetXaxis()->SetTitle("Angle31 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_31_200")->GetYaxis()->SetTitle("Angle12 [Degree]");
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_190_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->GetXaxis()->SetTitle("Angle31 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
 
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_Slope", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_12_Slope")->GetXaxis()->SetTitle("Angle12 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_12_Slope")->GetYaxis()->SetTitle("Angle23 [Degree]");
 
-   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_Slope", "Dalitz Angle23 vs Angle31", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_23_Slope")->GetXaxis()->SetTitle("Angle23 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_23_Slope")->GetYaxis()->SetTitle("Angle31 [Degree]");
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_Slope", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_31_Slope")->GetXaxis()->SetTitle("Angle31 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_31_Slope")->GetYaxis()->SetTitle("Angle12 [Degree]");
+	// 3.) Both Cut
 
 
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_Both", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_12_Both")->GetXaxis()->SetTitle("Angle12 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_12_Both")->GetYaxis()->SetTitle("Angle23 [Degree]");
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_12")->GetXaxis()->SetTitle("Angle12 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_12")->GetYaxis()->SetTitle("Angle23 [Degree]");
+   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_Both", "Dalitz Angle23 vs Angle31", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_23_Both")->GetXaxis()->SetTitle("Angle23 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_23_Both")->GetYaxis()->SetTitle("Angle31 [Degree]");
 
-   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23", "Dalitz Angle23 vs Angle31", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_23")->GetXaxis()->SetTitle("Angle23 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_23")->GetYaxis()->SetTitle("Angle31 [Degree]");
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_Both", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_31_Both")->GetXaxis()->SetTitle("Angle31 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_31_Both")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_31")->GetXaxis()->SetTitle("Angle31 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_31")->GetYaxis()->SetTitle("Angle12 [Degree]");
+
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_Both_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->GetXaxis()->SetTitle("Angle31 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
 
 
+
+
+
+	//Dalitz Energy
 
     getStatistics().createHistogram(new TH1F("Energy1", "Energy1",
       3001, -1500.5, 1500.5));
@@ -297,23 +262,10 @@ bool EventCategorizer::init() {
 
 
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Energy_12", "Dalitz Energy1 vs Energy2", 521, -0.5, 520.5, 521, -0.5, 520.5));
-    getStatistics().getHisto2D("Dalitz_Energy_12")->GetXaxis()->SetTitle("Energy1 [keV]");
-    getStatistics().getHisto2D("Dalitz_Energy_12")->GetYaxis()->SetTitle("Energy2 [keV]");
-
-   getStatistics().createHistogram(new TH2F("Dalitz_Energy_23", "Dalitz Energy2 vs Energy3", 521, -0.5, 520.5, 521, -0.5, 520.5));
-    getStatistics().getHisto2D("Dalitz_Energy_23")->GetXaxis()->SetTitle("Energy2 [keV]");
-    getStatistics().getHisto2D("Dalitz_Energy_23")->GetYaxis()->SetTitle("Energy3 [keV]");
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Energy_31", "Dalitz Energy3 vs Energy1", 521, -0.5, 520.5, 521, -0.5, 520.5));
-    getStatistics().getHisto2D("Dalitz_Energy_31")->GetXaxis()->SetTitle("Energy3 [keV]");
-    getStatistics().getHisto2D("Dalitz_Energy_31")->GetYaxis()->SetTitle("Energy1 [keV]");
-
-
 
 
  
- //Expectation Value
+ 	//Expectation Value
 
     getStatistics().createHistogram(new TH1F("ExpecValue1", "ExpecValue1",
       300, -1.5, 1.5));
@@ -337,17 +289,48 @@ bool EventCategorizer::init() {
 
 
 
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_ET_Cut", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_12_ET_Cut")->GetXaxis()->SetTitle("Angle12 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_12_ET_Cut")->GetYaxis()->SetTitle("Angle23 [Degree]");
+	//Scatter Test
 
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_Dist_Cut", "Dalitz Angle12 vs Angle23", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Dalitz_Angle_12_Dist_Cut")->GetXaxis()->SetTitle("Angle12 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_12_Dist_Cut")->GetYaxis()->SetTitle("Angle23 [Degree]");
+    getStatistics().createHistogram(new TH1F("Delta_ij_all_pr1", "Delta_ij_all_pr1",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_all_pr1")->GetXaxis()->SetTitle("Delta_ij_all_pr1 [ns]");
+    getStatistics().getHisto1D("Delta_ij_all_pr1")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_least_pr1", "Delta_ij_least_pr1",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_least_pr1")->GetXaxis()->SetTitle("Delta_ij_least_pr1 [ns]");
+    getStatistics().getHisto1D("Delta_ij_least_pr1")->GetYaxis()->SetTitle("Counts");
 
 
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_all_pr2", "Delta_ij_all_pr2",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_all_pr2")->GetXaxis()->SetTitle("Delta_ij_all_pr2 [ns]");
+    getStatistics().getHisto1D("Delta_ij_all_pr2")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_least_pr2", "Delta_ij_least_pr2",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_least_pr2")->GetXaxis()->SetTitle("Delta_ij_least_pr2 [ns]");
+    getStatistics().getHisto1D("Delta_ij_least_pr2")->GetYaxis()->SetTitle("Counts");
+
+
+
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_all_pr3", "Delta_ij_all_pr3",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_all_pr3")->GetXaxis()->SetTitle("Delta_ij_all_pr3 [ns]");
+    getStatistics().getHisto1D("Delta_ij_all_pr3")->GetYaxis()->SetTitle("Counts");
+
+    getStatistics().createHistogram(new TH1F("Delta_ij_least_pr3", "Delta_ij_least_pr3",
+      40100, -200.5, 200.5));
+    getStatistics().getHisto1D("Delta_ij_least_pr3")->GetXaxis()->SetTitle("Delta_ij_least_pr3 [ns]");
+    getStatistics().getHisto1D("Delta_ij_least_pr3")->GetYaxis()->SetTitle("Counts");
+
+
+
+  
 
   }
 
@@ -678,103 +661,19 @@ bool EventCategorizer::exec() {
 
 	getStatistics().getHisto2D("Dalitz_Angle_31_Full")->Fill(Angle31, Angle12);
 
+	getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->Fill(Angle12, Angle23);
+	getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->Fill(Angle23, Angle31);
+	getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->Fill(Angle31, Angle12);
 
 
- 	//3D Angle Cut - With a Slope
- 
+ 	//3D Angle Cut 
 
-	double Slope = ((Angle3D.at(1).first - Angle3D.at(0).first)/((Angle3D.at(1).first + Angle3D.at(0).first) - 190));
-
-	
 	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 190)
 
 	{
 
-	getStatistics().getHisto2D("Angle3D_190")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+	getStatistics().getHisto2D("Angle3D")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 
-
-	getStatistics().getHisto2D("Dalitz_Angle_12_190")->Fill(Angle12, Angle23);
-
-	getStatistics().getHisto2D("Dalitz_Angle_23_190")->Fill(Angle23, Angle31);
-
-	getStatistics().getHisto2D("Dalitz_Angle_31_190")->Fill(Angle31, Angle12);
-
-	
-
-
-	if((TOF_vec.at(2).first - TOF_vec.at(0).first) <= 0.7)
-
-	{
-
-
-	getStatistics().getHisto2D("Angle3D_ET_Cut")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
-	getStatistics().getHisto2D("Dalitz_Angle_12_ET_Cut")->Fill(Angle12, Angle23);
-
-
-
-
-	}
-
-	else if(DistfromSurface <= 1.0)
-	{
-	
-	
-	getStatistics().getHisto2D("Angle3D_Dist_Cut")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
-	getStatistics().getHisto2D("Dalitz_Angle_12_Dist_Cut")->Fill(Angle12, Angle23);
-
-	
-
-		}
-
-
-		
-
-
-	}
-
-	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 200)
-
-	{
-
-	getStatistics().getHisto2D("Angle3D_200")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
-
-
-	getStatistics().getHisto2D("Dalitz_Angle_12_200")->Fill(Angle12, Angle23);
-
-	getStatistics().getHisto2D("Dalitz_Angle_23_200")->Fill(Angle23, Angle31);
-
-	getStatistics().getHisto2D("Dalitz_Angle_31_200")->Fill(Angle31, Angle12);
-
-	}
-
-
-	
-
-                         
-	if ( Slope <= 10 && Slope > 0 ) {
-
-
-	getStatistics().getHisto2D("Angle3D_Slope")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
- 	
-	getStatistics().getHisto2D("Dalitz_Angle_12_Slope")->Fill(Angle12, Angle23);
-
-	getStatistics().getHisto2D("Dalitz_Angle_23_Slope")->Fill(Angle23, Angle31);
-
-	getStatistics().getHisto2D("Dalitz_Angle_31_Slope")->Fill(Angle31, Angle12);
-
-
-	}
-
-
-
-
-	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 200 &&  (Angle3D.at(1).first - Angle3D.at(0).first) <= 100 )
-	{
-
-	//Dalitz Angle Plot
-
-
-	getStatistics().getHisto2D("Angle3D_Both")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 
 	getStatistics().getHisto2D("Dalitz_Angle_12")->Fill(Angle12, Angle23);
 
@@ -782,6 +681,35 @@ bool EventCategorizer::exec() {
 
 	getStatistics().getHisto2D("Dalitz_Angle_31")->Fill(Angle31, Angle12);
 
+	getStatistics().getHisto2D("Dalitz_Angle_ALL")->Fill(Angle12, Angle23);
+	getStatistics().getHisto2D("Dalitz_Angle_ALL")->Fill(Angle23, Angle31);
+	getStatistics().getHisto2D("Dalitz_Angle_ALL")->Fill(Angle31, Angle12);	
+
+	
+
+	}
+
+	
+
+
+	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 190 &&  (Angle3D.at(1).first - Angle3D.at(0).first) <= 100 )
+	{
+
+	//Dalitz Angle Plot
+
+
+	getStatistics().getHisto2D("Angle3D_Both")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+	getStatistics().getHisto2D("Dalitz_Angle_12_Both")->Fill(Angle12, Angle23);
+
+	getStatistics().getHisto2D("Dalitz_Angle_23_Both")->Fill(Angle23, Angle31);
+
+	getStatistics().getHisto2D("Dalitz_Angle_31_Both")->Fill(Angle31, Angle12);
+
+
+	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle12, Angle23);
+	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle23, Angle31);
+	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle31, Angle12);
 
 
 
@@ -924,10 +852,15 @@ bool EventCategorizer::exec() {
 		
 		getStatistics().getHisto1D("Delta_ij_all_pr3")->Fill(Scatij_pr3);
 
-
+		if(fabs(Scatij_pr3) <= 4.0)
+		{
 	
 		Scat_vec_3.push_back({Scatij_pr3, {PrimaryHits[2], SecondaryHits[s]}});	
 		
+					}
+
+
+
 				}
 
 
@@ -983,6 +916,7 @@ bool EventCategorizer::exec() {
                     Energy_Vector.push_back({Energy2, PrimaryHits[1]});
                     Energy_Vector.push_back({Energy3, PrimaryHits[2]});
                     std::sort(Energy_Vector.begin(), Energy_Vector.end(), comparison);
+
 
  
 	if(Final_Hits.size() >= 1)
