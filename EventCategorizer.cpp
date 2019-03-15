@@ -159,9 +159,9 @@ bool EventCategorizer::init() {
     getStatistics().getHisto2D("Angle3D")->GetYaxis()->SetTitle("#Theta_1 - #Theta_0");
 
 
-    getStatistics().createHistogram(new TH2F("Angle3D", "3D Azimuthal Angles (Greater than 190deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
-    getStatistics().getHisto2D("Angle3D")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
-    getStatistics().getHisto2D("Angle3D")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
+    getStatistics().createHistogram(new TH2F("Angle3D_190", "3D Azimuthal Angles (Greater than 190deg)", 251, -0.5, 250.5, 251, -0.5, 250.5));
+    getStatistics().getHisto2D("Angle3D_190")->GetXaxis()->SetTitle("#Theta_{1} + #Theta_{0}");
+    getStatistics().getHisto2D("Angle3D_190")->GetYaxis()->SetTitle("#Theta_{1} - #Theta_{0}");
 
 
     getStatistics().createHistogram(new TH2F("Angle3D_Both", "3D Azimuthal Angles (Both - 200 Verticle & 100 Horizontal)", 251, -0.5, 250.5, 251, -0.5, 250.5));
@@ -672,18 +672,18 @@ bool EventCategorizer::exec() {
 
 	{
 
-	getStatistics().getHisto2D("Angle3D")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+	getStatistics().getHisto2D("Angle3D_190")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 
 
-	getStatistics().getHisto2D("Dalitz_Angle_12")->Fill(Angle12, Angle23);
+	getStatistics().getHisto2D("Dalitz_Angle_12_190")->Fill(Angle12, Angle23);
 
-	getStatistics().getHisto2D("Dalitz_Angle_23")->Fill(Angle23, Angle31);
+	getStatistics().getHisto2D("Dalitz_Angle_23_190")->Fill(Angle23, Angle31);
 
-	getStatistics().getHisto2D("Dalitz_Angle_31")->Fill(Angle31, Angle12);
+	getStatistics().getHisto2D("Dalitz_Angle_31_190")->Fill(Angle31, Angle12);
 
-	getStatistics().getHisto2D("Dalitz_Angle_ALL")->Fill(Angle12, Angle23);
-	getStatistics().getHisto2D("Dalitz_Angle_ALL")->Fill(Angle23, Angle31);
-	getStatistics().getHisto2D("Dalitz_Angle_ALL")->Fill(Angle31, Angle12);	
+	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle12, Angle23);
+	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle23, Angle31);
+	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle31, Angle12);	
 
 	
 
@@ -902,9 +902,9 @@ bool EventCategorizer::exec() {
                     getStatistics().getHisto1D("Energy2")->Fill(Energy2);
                     getStatistics().getHisto1D("Energy3")->Fill(Energy3);
 
-	            getStatistics().getHisto2D("Dalitz_Energy_12")->Fill(Energy1, Energy2);
-                    getStatistics().getHisto2D("Dalitz_Energy_23")->Fill(Energy2, Energy3);
-                    getStatistics().getHisto2D("Dalitz_Energy_31")->Fill(Energy3, Energy1);
+	            //getStatistics().getHisto2D("Dalitz_Energy_12")->Fill(Energy1, Energy2);
+                    //getStatistics().getHisto2D("Dalitz_Energy_23")->Fill(Energy2, Energy3);
+                    //getStatistics().getHisto2D("Dalitz_Energy_31")->Fill(Energy3, Energy1);
 
 
 
