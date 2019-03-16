@@ -259,6 +259,10 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Energy3")->GetXaxis()->SetTitle("Energy3 [keV]");
     getStatistics().getHisto1D("Energy3")->GetYaxis()->SetTitle("Counts");
 
+    getStatistics().createHistogram(new TH1F("Energy_i", "Energy_1",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy_i")->GetXaxis()->SetTitle("Energy_i [keV]");
+    getStatistics().getHisto1D("Energy_i")->GetYaxis()->SetTitle("Counts");
 
 
 
@@ -902,9 +906,9 @@ bool EventCategorizer::exec() {
                     getStatistics().getHisto1D("Energy2")->Fill(Energy2);
                     getStatistics().getHisto1D("Energy3")->Fill(Energy3);
 
-	            //getStatistics().getHisto2D("Dalitz_Energy_12")->Fill(Energy1, Energy2);
-                    //getStatistics().getHisto2D("Dalitz_Energy_23")->Fill(Energy2, Energy3);
-                    //getStatistics().getHisto2D("Dalitz_Energy_31")->Fill(Energy3, Energy1);
+	            getStatistics().getHisto1D("Energy_i")->Fill(Energy1);
+                    getStatistics().getHisto1D("Energy_i")->Fill(Energy2);
+                    getStatistics().getHisto1D("Energy_i")->Fill(Energy3);
 
 
 
