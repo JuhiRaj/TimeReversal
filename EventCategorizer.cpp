@@ -175,22 +175,6 @@ bool EventCategorizer::init() {
 	// 1.) Full
 
 
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_Full", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
-    getStatistics().getHisto2D("Dalitz_Angle_12_Full")->GetXaxis()->SetTitle("Angle12 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_12_Full")->GetYaxis()->SetTitle("Angle23 [Degree]");
-
-   getStatistics().createHistogram(new TH2F("Dalitz_Angle_23_Full", "Dalitz Angle23 vs Angle31", 201, -0.5, 200.5, 201, -0.5, 200.5));
-    getStatistics().getHisto2D("Dalitz_Angle_23_Full")->GetXaxis()->SetTitle("Angle23 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_23_Full")->GetYaxis()->SetTitle("Angle31 [Degree]");
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_31_Full", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
-    getStatistics().getHisto2D("Dalitz_Angle_31_Full")->GetXaxis()->SetTitle("Angle31 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_31_Full")->GetYaxis()->SetTitle("Angle12 [Degree]");
-
-
-    getStatistics().createHistogram(new TH2F("Dalitz_Angle_Full_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
-    getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->GetXaxis()->SetTitle("Angle31 [Degree]");
-    getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->GetYaxis()->SetTitle("Angle12 [Degree]");
 
 
 
@@ -240,6 +224,35 @@ bool EventCategorizer::init() {
 
 
 
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_100_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_100_ALL")->GetXaxis()->SetTitle("Angle12 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_100_ALL")->GetYaxis()->SetTitle("Angle23 [Degree]");
+
+
+
+
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_150_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_150_ALL")->GetXaxis()->SetTitle("Angle12 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_150_ALL")->GetYaxis()->SetTitle("Angle23 [Degree]");
+
+
+
+
+    getStatistics().createHistogram(new TH2F("Dalitz_Angle_200_ALL", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
+    getStatistics().getHisto2D("Dalitz_Angle_200_ALL")->GetXaxis()->SetTitle("Angle12 [Degree]");
+    getStatistics().getHisto2D("Dalitz_Angle_200_ALL")->GetYaxis()->SetTitle("Angle23 [Degree]");
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	//Dalitz Energy
@@ -259,10 +272,30 @@ bool EventCategorizer::init() {
     getStatistics().getHisto1D("Energy3")->GetXaxis()->SetTitle("Energy3 [keV]");
     getStatistics().getHisto1D("Energy3")->GetYaxis()->SetTitle("Counts");
 
-    getStatistics().createHistogram(new TH1F("Energy_i", "Energy_1",
+    getStatistics().createHistogram(new TH1F("Energy_i", "Energy_i",
       3001, -1500.5, 1500.5));
     getStatistics().getHisto1D("Energy_i")->GetXaxis()->SetTitle("Energy_i [keV]");
     getStatistics().getHisto1D("Energy_i")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("Energy_i_100", "Energy_i_100",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy_i_100")->GetXaxis()->SetTitle("Energy_i_100 [keV]");
+    getStatistics().getHisto1D("Energy_i_100")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("Energy_i_150", "Energy_i_150",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy_i_150")->GetXaxis()->SetTitle("Energy_i_150 [keV]");
+    getStatistics().getHisto1D("Energy_i_150")->GetYaxis()->SetTitle("Counts");
+
+
+    getStatistics().createHistogram(new TH1F("Energy_i_200", "Energy_i_200",
+      3001, -1500.5, 1500.5));
+    getStatistics().getHisto1D("Energy_i_200")->GetXaxis()->SetTitle("Energy_i_200 [keV]");
+    getStatistics().getHisto1D("Energy_i_200")->GetYaxis()->SetTitle("Counts");
+
+
 
 
 
@@ -334,6 +367,31 @@ bool EventCategorizer::init() {
 
 
 
+
+
+	//Test Histograms
+
+
+    getStatistics().createHistogram(new TH1F("getEnergy", "getEnergy",
+      2001, -1000.5, 1000.5));
+    getStatistics().getHisto1D("getEnergy")->GetXaxis()->SetTitle("getEnergy [keV]");
+    getStatistics().getHisto1D("getEnergy")->GetYaxis()->SetTitle("Counts");
+
+
+
+
+    getStatistics().createHistogram(new TH1F("getQEnergy", "getQEnergy",
+      2001, -1000.5, 1000.5));
+    getStatistics().getHisto1D("getQEnergy")->GetXaxis()->SetTitle("getQEnergy [keV]");
+    getStatistics().getHisto1D("getQEnergy")->GetYaxis()->SetTitle("Counts");
+
+
+
+
+
+
+
+
   
 
   }
@@ -358,8 +416,20 @@ bool EventCategorizer::exec() {
   if (auto timeWindow = dynamic_cast <
     const JPetTimeWindow *
       const > (fEvent)) {
+	
+	   
+
     uint n = timeWindow->getNumberOfEvents();
+
+	
+
     for (uint i = 0; i < n; ++i) {
+
+	
+
+	    f_event_counter++;
+
+
 
 	//Initializing the assumed center of the geometry globally
 
@@ -387,6 +457,43 @@ bool EventCategorizer::exec() {
 
 
 
+	//J-PET get Energy Check
+
+
+
+
+     for (auto w = hits.begin(); w != hits.end(); ++w) 
+	{
+		auto& hitw = *w;
+
+	double Energy = hitw.getEnergy();
+
+        getStatistics().getHisto1D("getEnergy")->Fill(Energy);
+
+	}
+
+	
+
+
+	//J-PET get Quality of Energy Check
+
+
+
+
+     for (auto v = hits.begin(); v != hits.end(); ++v)
+
+	{ 
+
+
+	auto& hitv = *v;
+
+	double QEnergy = hitv.getQualityOfEnergy();
+
+        getStatistics().getHisto1D("getQEnergy")->Fill(QEnergy);
+
+
+
+	}
 
     //Check for the Z-pos  of all hits 
 	
@@ -447,9 +554,9 @@ bool EventCategorizer::exec() {
 
 	std::vector < int > ID_vec;
 
-	for (auto i = hits.begin(); i != hits.end(); ++i) 
+	for (auto q = hits.begin(); q != hits.end(); ++q) 
 	{
-		auto& hit1 = *i;
+		auto& hit1 = *q;
         
 
 	 auto ID = hit1.getScintillator().getID();
@@ -502,9 +609,9 @@ bool EventCategorizer::exec() {
 
 
 
-	for (auto i = hits.begin(); i != hits.end(); ++i) 
+	for (auto a = hits.begin(); a != hits.end(); ++a) 
 	{
-		auto& hit1 = *i;
+		auto& hit1 = *a;
 
 
 	double TOT_i = CalcTOT(hit1);
@@ -659,16 +766,6 @@ bool EventCategorizer::exec() {
                     getStatistics().getHisto2D("Angle3D")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 
 
-	getStatistics().getHisto2D("Dalitz_Angle_12_Full")->Fill(Angle12, Angle23);
-
-	getStatistics().getHisto2D("Dalitz_Angle_23_Full")->Fill(Angle23, Angle31);
-
-	getStatistics().getHisto2D("Dalitz_Angle_31_Full")->Fill(Angle31, Angle12);
-
-	getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->Fill(Angle12, Angle23);
-	getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->Fill(Angle23, Angle31);
-	getStatistics().getHisto2D("Dalitz_Angle_Full_ALL")->Fill(Angle31, Angle12);
-
 
  	//3D Angle Cut 
 
@@ -685,9 +782,19 @@ bool EventCategorizer::exec() {
 
 	getStatistics().getHisto2D("Dalitz_Angle_31_190")->Fill(Angle31, Angle12);
 
+
+
+
+	if(f_event_counter %2 == 0)
+	{
 	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle12, Angle23);
-	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle23, Angle31);
-	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle31, Angle12);	
+	}
+
+	else if(f_event_counter %2 != 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_190_ALL")->Fill(Angle23, Angle12);
+	}
+	
 
 	
 
@@ -699,200 +806,12 @@ bool EventCategorizer::exec() {
 	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 190 &&  (Angle3D.at(1).first - Angle3D.at(0).first) <= 100 )
 	{
 
-	//Dalitz Angle Plot
 
 
-	getStatistics().getHisto2D("Angle3D_Both")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
 
-	getStatistics().getHisto2D("Dalitz_Angle_12_Both")->Fill(Angle12, Angle23);
+		//-----------------------------//
 
-	getStatistics().getHisto2D("Dalitz_Angle_23_Both")->Fill(Angle23, Angle31);
 
-	getStatistics().getHisto2D("Dalitz_Angle_31_Both")->Fill(Angle31, Angle12);
-
-
-	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle12, Angle23);
-	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle23, Angle31);
-	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle31, Angle12);
-
-
-
-	//Map the Scatter Hits Possibility
-	
-	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_1;
-	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_2;
-	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_3;
-	std::vector < pair < double, pair < JPetHit, JPetHit >>> Final_Hits;
-
-
-	
-		//Primary Hit_1
-
-		for (uint s = 0; s < SecondaryHits.size(); s++) 
-		{
-	
-
-			if(PrimaryHits.at(0).getTime()<SecondaryHits.at(s).getTime())
-			
-			
-
- 		//Perform Scatter Check only if S_t > P_t
-
-			{
-	
-	
-
-		double Scatij_pr1 = CalScatterTest(PrimaryHits.at(0), SecondaryHits.at(s));
-		
-		getStatistics().getHisto1D("Delta_ij_all_pr1")->Fill(Scatij_pr1);
-
-
-			
-		if(fabs(Scatij_pr1) <= 4.0)
-		{
-		
-			Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits.at(0), SecondaryHits.at(s)}});	
-			
-						}
-
-					
-					}
-
-
-
-
-
-
-			}
-	
-        	
-
-		//Least Scatter Test Values of Pr1
-
-
-
-		if ( Scat_vec_1.size() >= 1 )
-		{
-			std::sort(Scat_vec_1.begin(), Scat_vec_1.end(), comparison3); //Sort Scatij
-			getStatistics().getHisto1D("Delta_ij_least_pr1")->Fill(Scat_vec_1.at(0).first);
-	
-	
-		Final_Hits.push_back({Scat_vec_1.at(0).first, {Scat_vec_1.at(0).second.first, Scat_vec_1.at(0).second.second}});	
-
-		}
-
-
-
-		//Primary Hit_2
-
-
-		for (uint s = 0; s < SecondaryHits.size(); s++) 
-		{
-	
-
-			if(PrimaryHits[1].getTime()<SecondaryHits[s].getTime())
-
-
- 		//Perform Scatter Check only if S_t > P_t
-
-			{
-	
-	
-
-		double Scatij_pr2 = CalScatterTest(PrimaryHits[1], SecondaryHits[s]);
-		
-		getStatistics().getHisto1D("Delta_ij_all_pr2")->Fill(Scatij_pr2);
-
-		if(fabs(Scatij_pr2) <= 4.0)
-		{
-		Scat_vec_2.push_back({Scatij_pr2, {PrimaryHits[1], SecondaryHits[s]}});	
-		
-					}
-
-
-				}
-
-
-
-
-			}
-	
-        	
-
-		//Least Scatter Test Values of Pr2
-
-
-		if(Scat_vec_2.size() >= 1)
-		{	
-
-		std::sort(Scat_vec_2.begin(), Scat_vec_2.end(), comparison3); //Sort Scatij
-
-		getStatistics().getHisto1D("Delta_ij_least_pr2")->Fill(Scat_vec_2.at(0).first);
-
-
-
-		Final_Hits.push_back({Scat_vec_2.at(0).first, {Scat_vec_2.at(0).second.first, Scat_vec_2.at(0).second.second}});
-
-
-		}
-		
-		//Primary Hit_3
-
-
-		for (uint s = 0; s < SecondaryHits.size(); s++) 
-		{
-	
-
-			if(PrimaryHits[2].getTime()<SecondaryHits[s].getTime())
-
-
- 		//Perform Scatter Check only if S_t > P_t
-
-			{
-	
-	
-
-		double Scatij_pr3 = CalScatterTest(PrimaryHits[2], SecondaryHits[s]);
-		
-		getStatistics().getHisto1D("Delta_ij_all_pr3")->Fill(Scatij_pr3);
-
-		if(fabs(Scatij_pr3) <= 4.0)
-		{
-	
-		Scat_vec_3.push_back({Scatij_pr3, {PrimaryHits[2], SecondaryHits[s]}});	
-		
-					}
-
-
-
-				}
-
-
-
-
-			}
-	
-        	
-
-		//Least Scatter Test Values of Pr3
-
-
-		if(Scat_vec_3.size() >= 1)
-		{	
-
-		std::sort(Scat_vec_3.begin(), Scat_vec_3.end(), comparison3); //Sort Scatij
-
-		getStatistics().getHisto1D("Delta_ij_least_pr3")->Fill(Scat_vec_3.at(0).first);
-
-		
-
-		Final_Hits.push_back({Scat_vec_3.at(0).first, {Scat_vec_3.at(0).second.first, Scat_vec_3.at(0).second.second}});
-
-
-		}
-
-
-		
 	
 		    double AngleDiff = (360 - (Angle12 + Angle23));
                 
@@ -922,9 +841,390 @@ bool EventCategorizer::exec() {
                     std::sort(Energy_Vector.begin(), Energy_Vector.end(), comparison);
 
 
- 
+
+
+
+
+
+	//Dalitz Angle Plot
+
+
+	getStatistics().getHisto2D("Angle3D_Both")->Fill(Angle3D.at(1).first + Angle3D.at(0).first, Angle3D.at(1).first - Angle3D.at(0).first);
+
+	getStatistics().getHisto2D("Dalitz_Angle_12_Both")->Fill(Angle12, Angle23);
+
+	getStatistics().getHisto2D("Dalitz_Angle_23_Both")->Fill(Angle23, Angle31);
+
+	getStatistics().getHisto2D("Dalitz_Angle_31_Both")->Fill(Angle31, Angle12);
+
+
+
+	
+	if(f_event_counter %2 == 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle12, Angle23);
+	}
+
+	else if(f_event_counter %2 != 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_Both_ALL")->Fill(Angle23, Angle12);
+	}
+
+
+
+	//--------------------Energy Cuts - 100keV--------------------//
+
+	if(Energy1 >= 100.0 && Energy2 >= 100.0 && Energy3 >= 100.0)
+	{
+
+	
+	
+	            getStatistics().getHisto1D("Energy_i_100")->Fill(Energy1);
+                    getStatistics().getHisto1D("Energy_i_100")->Fill(Energy2);
+                    getStatistics().getHisto1D("Energy_i_100")->Fill(Energy3);
+
+
+
+
+
+		
+	if(f_event_counter %2 == 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_100_ALL")->Fill(Angle12, Angle23);
+	}
+
+	else if(f_event_counter %2 != 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_100_ALL")->Fill(Angle23, Angle12);
+	}
+
+
+
+
+
+	if(Energy1 >= 150.0 && Energy2 >= 150.0 && Energy3 >= 150.0)
+	{
+
+
+	
+	            getStatistics().getHisto1D("Energy_i_150")->Fill(Energy1);
+                    getStatistics().getHisto1D("Energy_i_150")->Fill(Energy2);
+                    getStatistics().getHisto1D("Energy_i_150")->Fill(Energy3);
+
+
+
+		
+	if(f_event_counter %2 == 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_150_ALL")->Fill(Angle12, Angle23);
+	}
+
+	else if(f_event_counter %2 != 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_150_ALL")->Fill(Angle23, Angle12);
+	}
+	
+
+
+	
+	if(Energy1 >= 200.0 && Energy2 >= 200.0 && Energy3 >= 200.0)
+	{
+
+
+		
+	            getStatistics().getHisto1D("Energy_i_200")->Fill(Energy1);
+                    getStatistics().getHisto1D("Energy_i_200")->Fill(Energy2);
+                    getStatistics().getHisto1D("Energy_i_200")->Fill(Energy3);
+
+
+
+
+			
+	if(f_event_counter %2 == 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_200_ALL")->Fill(Angle12, Angle23);
+	}
+
+	else if(f_event_counter %2 != 0)
+	{
+	getStatistics().getHisto2D("Dalitz_Angle_200_ALL")->Fill(Angle23, Angle12);
+	}
+
+
+
+
+
+
+
+
+
+					}
+
+
+
+
+				}
+
+
+
+			}
+
+
+	//Map the Scatter Hits Possibility
+	
+	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_1;
+	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_2;
+	std::vector < pair < double, pair < JPetHit, JPetHit >>> Scat_vec_3;
+	std::vector < pair < double, pair < JPetHit, JPetHit >>> Final_Hits;
+
+
+	//----------------------------------------------//
+
+		//Primary Hit_1
+
+		for (uint s = 0; s < SecondaryHits.size(); s++) 
+		{
+	
+		if(PrimaryHits.at(0).getTime()<SecondaryHits.at(s).getTime())
+
+			{
+
+		double Scatij_pr1 = CalScatterTest(PrimaryHits.at(0), SecondaryHits.at(s));
+		
+		getStatistics().getHisto1D("Delta_ij_all_pr1")->Fill(Scatij_pr1);
+
+			
+		//if(fabs(Scatij_pr1) <= 4.0)
+		//{
+		
+			Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits.at(0), SecondaryHits.at(s)}});	
+			
+						//}
+
+					
+					}
+
+
+			}
+	
+        	
+
+		//Least Scatter Test Values of Pr1
+
+		if ( Scat_vec_1.size() >= 1 )
+		{
+			std::sort(Scat_vec_1.begin(), Scat_vec_1.end(), comparison3); //Sort Scatij
+			getStatistics().getHisto1D("Delta_ij_least_pr1")->Fill(Scat_vec_1.at(0).first);
+	
+	
+		Final_Hits.push_back({Scat_vec_1.at(0).first, {Scat_vec_1.at(0).second.first, Scat_vec_1.at(0).second.second}});	
+
+
+	//Remove that possible scatter from the vector of scatters
+
+
+
+	for(uint m = 0; m < SecondaryHits.size(); m++)
+	{
+
+
+	if(SecondaryHits.at(m).getScintillator().getID() == Scat_vec_1.at(0).second.second.getScintillator().getID())
+	{
+	
+	  SecondaryHits.erase(SecondaryHits.begin()+m);
+
+
+			}
+
+
+		    }
+		
+
+
+		}
+
+
+
+	//-------------------------------------//
+
+	//------------------------------------//
+
+	if(SecondaryHits.size() >= 1)
+	{
+
+	//Primary Hit_2
+
+
+		for (uint s = 0; s < SecondaryHits.size(); s++) 
+		{
+	
+
+			if(PrimaryHits[1].getTime()<SecondaryHits[s].getTime())
+
+
+ 		//Perform Scatter Check only if S_t > P_t
+
+			{
+	
+	
+
+		double Scatij_pr2 = CalScatterTest(PrimaryHits[1], SecondaryHits[s]);
+		
+		getStatistics().getHisto1D("Delta_ij_all_pr2")->Fill(Scatij_pr2);
+
+		//if(fabs(Scatij_pr2) <= 4.0)
+		//{
+		Scat_vec_2.push_back({Scatij_pr2, {PrimaryHits[1], SecondaryHits[s]}});	
+		
+					//}
+
+
+				}
+
+
+
+
+			}
+	
+        	
+
+		//Least Scatter Test Values of Pr2
+
+
+		if(Scat_vec_2.size() >= 1)
+		{	
+
+		std::sort(Scat_vec_2.begin(), Scat_vec_2.end(), comparison3); //Sort Scatij
+
+		getStatistics().getHisto1D("Delta_ij_least_pr2")->Fill(Scat_vec_2.at(0).first);
+
+
+
+		Final_Hits.push_back({Scat_vec_2.at(0).first, {Scat_vec_2.at(0).second.first, Scat_vec_2.at(0).second.second}});
+
+
+
+	for(uint n = 0; n < SecondaryHits.size(); n++)
+	{
+
+
+	if(SecondaryHits.at(n).getScintillator().getID() == Scat_vec_2.at(0).second.second.getScintillator().getID())
+	{
+	
+	  SecondaryHits.erase(SecondaryHits.begin()+n);
+
+
+			}
+
+
+		    }
+		
+
+
+
+
+		}
+
+
+	
+	if(SecondaryHits.size() >= 1)
+	{
+
+
+
+	//---------------------------------------------//
+	//---------------------------------------------//
+
+		
+		//Primary Hit_3
+
+
+		for (uint s = 0; s < SecondaryHits.size(); s++) 
+		{
+	
+
+			if(PrimaryHits[2].getTime()<SecondaryHits[s].getTime())
+
+
+ 		//Perform Scatter Check only if S_t > P_t
+
+			{
+	
+	
+
+		double Scatij_pr3 = CalScatterTest(PrimaryHits[2], SecondaryHits[s]);
+		
+		getStatistics().getHisto1D("Delta_ij_all_pr3")->Fill(Scatij_pr3);
+
+		//if(fabs(Scatij_pr3) <= 4.0)
+		//{
+	
+		Scat_vec_3.push_back({Scatij_pr3, {PrimaryHits[2], SecondaryHits[s]}});	
+		
+					//}
+
+
+
+				}
+
+
+
+
+			}
+	
+        	
+
+	
+
+
+
+		//Least Scatter Test Values of Pr3
+
+
+		if(Scat_vec_3.size() >= 1)
+		{	
+
+		std::sort(Scat_vec_3.begin(), Scat_vec_3.end(), comparison3); //Sort Scatij
+
+		getStatistics().getHisto1D("Delta_ij_least_pr3")->Fill(Scat_vec_3.at(0).first);
+
+		
+
+		Final_Hits.push_back({Scat_vec_3.at(0).first, {Scat_vec_3.at(0).second.first, Scat_vec_3.at(0).second.second}});
+
+
+
+	for(uint q = 0; q < SecondaryHits.size(); q++)
+	{
+
+
+	if(SecondaryHits.at(q).getScintillator().getID() == Scat_vec_3.at(0).second.second.getScintillator().getID())
+	{
+	
+	  SecondaryHits.erase(SecondaryHits.begin()+q);
+
+
+						}
+
+
+					    }
+		
+
+
+				}
+
+
+			}
+
+		}		
+
+
+	
+	
 	if(Final_Hits.size() >= 1)
 	{
+
+	
 
 	for(uint o = 0; o < Final_Hits.size(); o++)
 	{
@@ -963,13 +1263,13 @@ bool EventCategorizer::exec() {
 		}
 
 
-												}
+												
 
 
-											}
+											
 										
 
-										}
+										
 
 									}
 
@@ -981,14 +1281,18 @@ bool EventCategorizer::exec() {
 						}
 
 
+					}
+
+
+				
 
 	//Clear the vectors//
 
 
 
-	
+							}
 
-
+						}
 
 
 					}

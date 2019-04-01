@@ -242,5 +242,7 @@ double CalScatterTest(const JPetHit & Hit1,
 protected:
 	void saveEvents(const std::vector<JPetEvent>& event);
 	bool fSaveControlHistos = true;
+
+	int f_event_counter = 0;
 };
 #endif /*  !EVENTCATEGORIZER_H */
