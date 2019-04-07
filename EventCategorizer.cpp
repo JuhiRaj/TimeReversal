@@ -172,13 +172,6 @@ bool EventCategorizer::init() {
 	//Dalitz - Angle
 
 
-	// 1.) Full
-
-
-
-
-
-	// 2.) 190 Degree Cut
 
 
     getStatistics().createHistogram(new TH2F("Dalitz_Angle_12_190", "Dalitz Angle12 vs Angle23", 201, -0.5, 200.5, 201, -0.5, 200.5));
@@ -369,21 +362,11 @@ bool EventCategorizer::init() {
 
 
 
-	//Test Histograms
+	
 
-
-    getStatistics().createHistogram(new TH1F("getEnergy", "getEnergy",
-      2001, -1000.5, 1000.5));
-    getStatistics().getHisto1D("getEnergy")->GetXaxis()->SetTitle("getEnergy [keV]");
-    getStatistics().getHisto1D("getEnergy")->GetYaxis()->SetTitle("Counts");
-
-
-
-
-    getStatistics().createHistogram(new TH1F("getQEnergy", "getQEnergy",
-      2001, -1000.5, 1000.5));
-    getStatistics().getHisto1D("getQEnergy")->GetXaxis()->SetTitle("getQEnergy [keV]");
-    getStatistics().getHisto1D("getQEnergy")->GetYaxis()->SetTitle("Counts");
+    getStatistics().createHistogram(new TH2F("Scat_Final_Check", "Scat(0) vs Scat(1 & 2)", 40100, -200.5, 200.5, 40100, -200.5, 200.5));
+    getStatistics().getHisto2D("Scat_Final_Check")->GetXaxis()->SetTitle("Scat(0) [ns]");
+    getStatistics().getHisto2D("Scat_Final_Check")->GetYaxis()->SetTitle("Scat(1 & 2) [ns]");
 
 
 
@@ -443,7 +426,7 @@ bool EventCategorizer::exec() {
    //This analysis requires only 4-Hits in a single event	    
 
 
-
+/*
 
     //Create a general vector of hits
 
@@ -456,44 +439,6 @@ bool EventCategorizer::exec() {
 	std::vector < JPetHit > SecondaryHits;
 
 
-
-	//J-PET get Energy Check
-
-
-
-
-     for (auto w = hits.begin(); w != hits.end(); ++w) 
-	{
-		auto& hitw = *w;
-
-	double Energy = hitw.getEnergy();
-
-        getStatistics().getHisto1D("getEnergy")->Fill(Energy);
-
-	}
-
-	
-
-
-	//J-PET get Quality of Energy Check
-
-
-
-
-     for (auto v = hits.begin(); v != hits.end(); ++v)
-
-	{ 
-
-
-	auto& hitv = *v;
-
-	double QEnergy = hitv.getQualityOfEnergy();
-
-        getStatistics().getHisto1D("getQEnergy")->Fill(QEnergy);
-
-
-
-	}
 
     //Check for the Z-pos  of all hits 
 	
@@ -521,11 +466,6 @@ bool EventCategorizer::exec() {
 
 
 
-
-
-
-
-
 	
 	//Only if all hits have Z-Pos less than 23 [cm] enter
 
@@ -536,16 +476,6 @@ bool EventCategorizer::exec() {
 
 	getStatistics().getHisto1D("Hits_Z_Pos")->Fill(event.getHits().size()); 
 	
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -576,16 +506,6 @@ bool EventCategorizer::exec() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 	//No duplicate ID's only then enter 
 
 
@@ -595,11 +515,6 @@ bool EventCategorizer::exec() {
         getStatistics().getHisto1D("ScinID_Replica_Cut")->Fill(ID_vec.size());
 
 	getStatistics().getHisto1D("Hits_Replica")->Fill(event.getHits().size()); 
-
-
-
-
-
 
 
 
@@ -635,14 +550,8 @@ bool EventCategorizer::exec() {
 
 
 
-
-
-
 	
 	getStatistics().getHisto1D("Hits_New_Event")->Fill(New_Event.size()); 
-
-
-
 
 
 
@@ -711,8 +620,6 @@ bool EventCategorizer::exec() {
 
 	
 	
-
-
 
 
 	getStatistics().getHisto1D("TOF_Difference_t3t1")->Fill(TOF_vec.at(2).first - TOF_vec.at(0).first);
@@ -803,7 +710,7 @@ bool EventCategorizer::exec() {
 	
 
 
-	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 190 &&  (Angle3D.at(1).first - Angle3D.at(0).first) <= 100 )
+	if((Angle3D.at(1).first + Angle3D.at(0).first) >= 190 &&  Angle3D.at(2).first >= 60 )
 	{
 
 
@@ -828,7 +735,6 @@ bool EventCategorizer::exec() {
 	            getStatistics().getHisto1D("Energy_i")->Fill(Energy1);
                     getStatistics().getHisto1D("Energy_i")->Fill(Energy2);
                     getStatistics().getHisto1D("Energy_i")->Fill(Energy3);
-
 
 
 
@@ -898,7 +804,7 @@ bool EventCategorizer::exec() {
 	getStatistics().getHisto2D("Dalitz_Angle_100_ALL")->Fill(Angle23, Angle12);
 	}
 
-
+	}
 
 
 
@@ -924,6 +830,9 @@ bool EventCategorizer::exec() {
 	getStatistics().getHisto2D("Dalitz_Angle_150_ALL")->Fill(Angle23, Angle12);
 	}
 	
+
+
+	}
 
 
 	
@@ -958,16 +867,8 @@ bool EventCategorizer::exec() {
 
 
 
-					}
-
-
-
-
-				}
-
-
-
-			}
+					
+	
 
 
 	//Map the Scatter Hits Possibility
@@ -980,7 +881,10 @@ bool EventCategorizer::exec() {
 
 	//----------------------------------------------//
 
-		//Primary Hit_1
+
+	if(SecondaryHits.size() >= 1 && PrimaryHits.size() == 3){
+	
+	//Primary Hit_1
 
 		for (uint s = 0; s < SecondaryHits.size(); s++) 
 		{
@@ -993,13 +897,10 @@ bool EventCategorizer::exec() {
 		
 		getStatistics().getHisto1D("Delta_ij_all_pr1")->Fill(Scatij_pr1);
 
-			
-		//if(fabs(Scatij_pr1) <= 4.0)
-		//{
 		
-			Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits.at(0), SecondaryHits.at(s)}});	
+		Scat_vec_1.push_back({Scatij_pr1, {PrimaryHits.at(0), SecondaryHits.at(s)}});	
 			
-						//}
+						
 
 					
 					}
@@ -1007,50 +908,24 @@ bool EventCategorizer::exec() {
 
 			}
 	
+
+
+		if(Scat_vec_1.size() >= 1){
+
         	
-
-		//Least Scatter Test Values of Pr1
-
-		if ( Scat_vec_1.size() >= 1 )
-		{
-			std::sort(Scat_vec_1.begin(), Scat_vec_1.end(), comparison3); //Sort Scatij
-			getStatistics().getHisto1D("Delta_ij_least_pr1")->Fill(Scat_vec_1.at(0).first);
+		std::sort(Scat_vec_1.begin(), Scat_vec_1.end(), comparison3); //Sort Scatij
+		getStatistics().getHisto1D("Delta_ij_least_pr1")->Fill(Scat_vec_1.at(0).first);
 	
 	
 		Final_Hits.push_back({Scat_vec_1.at(0).first, {Scat_vec_1.at(0).second.first, Scat_vec_1.at(0).second.second}});	
 
-
-	//Remove that possible scatter from the vector of scatters
-
-
-
-	for(uint m = 0; m < SecondaryHits.size(); m++)
-	{
-
-
-	if(SecondaryHits.at(m).getScintillator().getID() == Scat_vec_1.at(0).second.second.getScintillator().getID())
-	{
-	
-	  SecondaryHits.erase(SecondaryHits.begin()+m);
-
-
 			}
-
-
-		    }
-		
-
-
-		}
 
 
 
 	//-------------------------------------//
 
 	//------------------------------------//
-
-	if(SecondaryHits.size() >= 1)
-	{
 
 	//Primary Hit_2
 
@@ -1062,8 +937,6 @@ bool EventCategorizer::exec() {
 			if(PrimaryHits[1].getTime()<SecondaryHits[s].getTime())
 
 
- 		//Perform Scatter Check only if S_t > P_t
-
 			{
 	
 	
@@ -1072,12 +945,11 @@ bool EventCategorizer::exec() {
 		
 		getStatistics().getHisto1D("Delta_ij_all_pr2")->Fill(Scatij_pr2);
 
-		//if(fabs(Scatij_pr2) <= 4.0)
-		//{
+		
+		
 		Scat_vec_2.push_back({Scatij_pr2, {PrimaryHits[1], SecondaryHits[s]}});	
 		
-					//}
-
+					
 
 				}
 
@@ -1086,15 +958,9 @@ bool EventCategorizer::exec() {
 
 			}
 	
-        	
+        	if(Scat_vec_2.size() >= 1){
 
-		//Least Scatter Test Values of Pr2
-
-
-		if(Scat_vec_2.size() >= 1)
-		{	
-
-		std::sort(Scat_vec_2.begin(), Scat_vec_2.end(), comparison3); //Sort Scatij
+		std::sort(Scat_vec_2.begin(), Scat_vec_2.end(), comparison3);
 
 		getStatistics().getHisto1D("Delta_ij_least_pr2")->Fill(Scat_vec_2.at(0).first);
 
@@ -1102,38 +968,11 @@ bool EventCategorizer::exec() {
 
 		Final_Hits.push_back({Scat_vec_2.at(0).first, {Scat_vec_2.at(0).second.first, Scat_vec_2.at(0).second.second}});
 
-
-
-	for(uint n = 0; n < SecondaryHits.size(); n++)
-	{
-
-
-	if(SecondaryHits.at(n).getScintillator().getID() == Scat_vec_2.at(0).second.second.getScintillator().getID())
-	{
-	
-	  SecondaryHits.erase(SecondaryHits.begin()+n);
-
-
 			}
 
+	//------------------------------------------//
 
-		    }
-		
-
-
-
-
-		}
-
-
-	
-	if(SecondaryHits.size() >= 1)
-	{
-
-
-
-	//---------------------------------------------//
-	//---------------------------------------------//
+	//------------------------------------------//
 
 		
 		//Primary Hit_3
@@ -1146,7 +985,7 @@ bool EventCategorizer::exec() {
 			if(PrimaryHits[2].getTime()<SecondaryHits[s].getTime())
 
 
- 		//Perform Scatter Check only if S_t > P_t
+ 		
 
 			{
 	
@@ -1156,12 +995,11 @@ bool EventCategorizer::exec() {
 		
 		getStatistics().getHisto1D("Delta_ij_all_pr3")->Fill(Scatij_pr3);
 
-		//if(fabs(Scatij_pr3) <= 4.0)
-		//{
+		
 	
 		Scat_vec_3.push_back({Scatij_pr3, {PrimaryHits[2], SecondaryHits[s]}});	
 		
-					//}
+					
 
 
 
@@ -1173,16 +1011,7 @@ bool EventCategorizer::exec() {
 			}
 	
         	
-
-	
-
-
-
-		//Least Scatter Test Values of Pr3
-
-
-		if(Scat_vec_3.size() >= 1)
-		{	
+		if(Scat_vec_3.size() >= 1) {
 
 		std::sort(Scat_vec_3.begin(), Scat_vec_3.end(), comparison3); //Sort Scatij
 
@@ -1193,74 +1022,49 @@ bool EventCategorizer::exec() {
 		Final_Hits.push_back({Scat_vec_3.at(0).first, {Scat_vec_3.at(0).second.first, Scat_vec_3.at(0).second.second}});
 
 
-
-	for(uint q = 0; q < SecondaryHits.size(); q++)
-	{
-
-
-	if(SecondaryHits.at(q).getScintillator().getID() == Scat_vec_3.at(0).second.second.getScintillator().getID())
-	{
-	
-	  SecondaryHits.erase(SecondaryHits.begin()+q);
-
-
-						}
-
-
-					    }
-		
-
-
 				}
 
+	
+		if(Final_Hits.size() >= 1) {
 
-			}
-
-		}		
+		std::sort(Final_Hits.begin(), Final_Hits.end(), comparison3); //Sort Scatij	
 
 
 	
-	
-	if(Final_Hits.size() >= 1)
-	{
-
-	
-
-	for(uint o = 0; o < Final_Hits.size(); o++)
-	{
+	//Scatter Plot//
 
 
+	if(Final_Hits.size() >= 3){
 
-       	 if (Final_Hits.at(o).second.first.getScintillator().getID() == Energy_Vector.at(2).second.getScintillator().getID()) {
+	getStatistics().getHisto2D("Scat_Final_Check")->Fill(Final_Hits.at(0).first, Final_Hits.at(1).first);
 
-                              double ExpecValue1 = CalExpecValue(Final_Hits.at(o).second.first, Final_Hits.at(o).second.second, Energy_Vector.at(1).second, Center);
+	getStatistics().getHisto2D("Scat_Final_Check")->Fill(Final_Hits.at(0).first, Final_Hits.at(2).first);
+	}
+
+
+       	 if (Final_Hits.at(0).second.first.getScintillator().getID() == Energy_Vector.at(2).second.getScintillator().getID()) {
+
+                              double ExpecValue1 = CalExpecValue(Final_Hits.at(0).second.first, Final_Hits.at(0).second.second, Energy_Vector.at(1).second, Center);
 
             getStatistics().getHisto1D("ExpecValue1")->Fill(ExpecValue1);
             getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue1);
 
-                            } else if (Final_Hits.at(o).second.first.getScintillator().getID() == Energy_Vector.at(1).second.getScintillator().getID()) {
+                            } else if (Final_Hits.at(0).second.first.getScintillator().getID() == Energy_Vector.at(1).second.getScintillator().getID()) {
 
-                              double ExpecValue2 = CalExpecValue(Final_Hits.at(o).second.first, Final_Hits.at(o).second.second, Energy_Vector.at(2).second, Center);
+                              double ExpecValue2 = CalExpecValue(Final_Hits.at(0).second.first, Final_Hits.at(0).second.second, Energy_Vector.at(2).second, Center);
             
 	    getStatistics().getHisto1D("ExpecValue2")->Fill(ExpecValue2);
             getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue2);
                             
-			   } else if (Final_Hits.at(o).second.first.getScintillator().getID() == Energy_Vector.at(0).second.getScintillator().getID()) {
+			   } else if (Final_Hits.at(0).second.first.getScintillator().getID() == Energy_Vector.at(0).second.getScintillator().getID()) {
 
-                              double ExpecValue3 = CalExpecValue(Final_Hits.at(o).second.first, Final_Hits.at(o).second.second,Energy_Vector.at(2).second, Center);
+                              double ExpecValue3 = CalExpecValue(Final_Hits.at(0).second.first, Final_Hits.at(0).second.second,Energy_Vector.at(2).second, Center);
                              
  	    getStatistics().getHisto1D("ExpecValue3")->Fill(ExpecValue3);
  	    getStatistics().getHisto1D("ExpecValue")->Fill(ExpecValue3);
 
-	
-				
+		
 							}
-
-
-
-
-
-		}
 
 
 												
@@ -1275,6 +1079,7 @@ bool EventCategorizer::exec() {
 
 								}
 
+
 							}
 
 
@@ -1284,15 +1089,17 @@ bool EventCategorizer::exec() {
 					}
 
 
-				
+				}				
 
+
+			}
 	//Clear the vectors//
 
 
 
 							}
 
-						}
+						}*/
 
 
 					}
