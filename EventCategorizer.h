@@ -237,6 +237,88 @@ double CalScatterTest(const JPetHit & Hit1,
 
 
 
+/*
+double  AngleMix(int count, double Angle12, double Angle23, double Angle31)
+	{
+
+	static double arr[2];
+	
+  	if(count%6 == 0){
+                
+	arr[0] = Angle12;
+	arr[1] = Angle23;
+     
+	return arr;
+
+	  }
+
+
+        else if(count%5 == 0){
+      
+          
+	arr[0] = Angle12;
+	arr[1] = Angle31;
+                
+           
+	return arr;
+
+	    }
+
+
+        else if(count%4 == 0){ 
+
+               
+	arr[0] = Angle23;
+	arr[1] = Angle31;
+
+	return arr;
+
+                }
+
+
+        else if(count%3 == 0){
+
+
+	arr[0] = Angle23;
+ 	arr[1] = Angle12;
+
+	return arr;
+
+                }
+
+
+         else if(count%2 == 0){ 
+
+              
+	arr[0] = Angle31;
+	arr[1] = Angle12;
+	
+	return arr;
+                
+                }
+
+
+        else if(cout%1 == 0){                
+          
+	arr[0] = Angle31;
+	arr[1] = Angle23;
+
+	return arr;
+
+                }
+
+
+
+
+
+	}
+
+*/
+
+
+
+
+
 
 
 protected:
